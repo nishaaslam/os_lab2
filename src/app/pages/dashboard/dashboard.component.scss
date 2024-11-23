@@ -1,0 +1,243 @@
+.dashboard-container {
+    width: -webkit-fill-available;
+    .first-col{
+        display: flex;
+        justify-content: left;
+    }
+
+    .last-col{
+        display: flex;
+        justify-content: end;
+    }
+    // top 3 cards on dashboard
+    .dashboard-card {
+        width:90%;
+        border: 0;
+        box-shadow: none;
+        background-color: whitesmoke;
+        border-radius:12px;
+
+        .icon-text {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            line-height: normal;
+            margin-left:10%;
+
+            label {
+                color: #595959;
+                font-size: 13px;
+                font-weight: 400;
+            }
+
+            h5 {
+                color: #1D1D1D;
+                font-size: 20px;
+                font-weight: 700;
+                text-transform: capitalize;
+                word-break: break-word;
+            }
+        }
+        &--bg-yellow{
+            background-color: #F5F1D5;
+        }
+
+        &--bg-pink{
+            background-color: #FFEEEE;
+        }
+
+        &--bg-blue{
+            background-color: #D2ECF7;
+        }
+    }
+
+    .db-gray-cards-wrapper{
+        margin-top:3.5rem;
+
+        .db-gray-card{
+            box-shadow: none;
+            background: #F3F3F3A8;
+            border:0;
+            border-radius:15px;
+            color:black;
+
+            &.left-card{
+                margin-right: 3.1rem;
+            }
+
+            &.right-card{
+                padding:30px 45px;
+                
+                .goal-btn{
+                    background-color: #589BB6;
+                    font-weight:500;
+                    border-radius: 12px;
+                    border:0;
+                    color:white;
+                    cursor: pointer;
+                
+                    &:hover{
+                        background-color: #79d2f5;
+                    }
+                }
+
+
+                .chart-inner-wrapper{
+                    text-align: center;
+                    label{
+                        color:#5B5B5B;
+                        font-size:14px;
+                        line-height: normal;
+                    }
+                
+                    .consumed{
+                        color:#589BB6;
+                        font-size:40px;
+                        font-weight: 600;
+                    }
+                
+                    .remaining{
+                        color:#000000;
+                        font-size:25px;
+                        font-weight: 600;
+                        }
+                }
+                .month-filter-wrapper{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            }
+            .card-body{
+                padding:50px 95px;
+    
+                .db-gray-card-heading{
+                    font-weight:600;
+                    font-size:20px;
+                }
+
+                .db-gray-card-sub_heading{
+                    font-weight:600;
+                    font-size:16px;
+                }
+
+                .db-gray-card-text{
+                    font-size: 15px;
+                    font-weight: 400;
+                }
+
+                .colored-circle{
+                    width:36px;
+                    height:36px;
+                    background-color: gray;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+   
+}
+
+
+
+
+
+//responsiveness
+//top cards
+@media screen and (max-width:993px) {
+    .dashboard-container{
+        .last-col{
+            justify-content: start;
+        }
+}
+}
+
+//its for units card
+@media screen and (min-width:992px) and (max-width:1430px) {
+    .dashboard-container {
+        .db-gray-cards-wrapper{
+            .db-gray-card{
+                .card-body{
+                    padding:30px 60px;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width:992px) {
+    .dashboard-container{
+        .db-gray-cards-wrapper{
+            .left-card{
+                margin-right: 0px !important;
+            }
+        }
+}
+}
+
+@media screen and (max-width:768px) {
+    .dashboard-container{
+    .first-col , .last-col{
+        justify-content: center;
+    }
+
+    .dashboard-card{
+        width:100%;
+        .icon-text{
+            margin-left: 1rem;
+        }
+    }
+}
+}
+
+@media screen and (max-width:520px){
+    .dashboard-container {
+        .db-gray-cards-wrapper{
+            .db-gray-card{
+                .card-body{
+                    padding:30px 20px;
+                }
+            }
+        }
+    }
+}
+
+
+//chart card responsiveness
+
+@media screen and (max-width:480px){
+    .dashboard-container {
+        .db-gray-cards-wrapper{
+            .db-gray-card.right-card{
+                .month-filter-wrapper{
+                    display: block !important;
+                    text-align: center;
+                }
+
+                .chart-inner-wrapper{
+                    label{
+                        font-size: 10px;
+                    }
+
+                    .consumed{
+                        font-size: 14px;
+                    }
+
+                    .remaining{
+                        font-size: 12px;
+                    }
+
+                    hr{
+                        margin:0 !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+

@@ -1,0 +1,112 @@
+<div class="container-fluid p-0 dashboard-container">
+    <div class="row gx-0">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 first-col p-1">
+            <div class="card dashboard-card dashboard-card--bg-yellow h-100">
+                <div class="card-body d-flex p-4">
+                    <div class="icon-text">
+                        <img width="24" src="../../../assets/images/dashboard-images/status-img.png">
+                        <div class="ms-3">
+                            <label>Status:</label>
+                            <h5 class="mb-0">{{model?.status ? model?.status : "-"}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 d-flex justify-content-center align-items-center p-1">
+            <div class="card dashboard-card dashboard-card--bg-pink h-100">
+                <div class="card-body d-flex p-4">
+                    <div class="icon-text">
+                        <img width="24" src="../../../assets/images/dashboard-images/Calendar.png">
+                        <div class="ms-3">
+                            <label>Due Date:</label>
+                            <h5 class="mb-0">{{model?.due_date ? model?.due_date : "-"}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12 last-col p-1">
+            <div class="card dashboard-card dashboard-card--bg-blue h-100">
+                <div class="card-body d-flex p-4">
+                    <div class="icon-text">
+                        <img width="24" src="../../../assets/images/dashboard-images/bill.png">
+                        <div class="ms-3">
+                            <label>Bill amount:</label>
+                            <h5 class="mb-0">{{model?.bill_amount ? model?.bill_amount : "-"}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row gx-0 db-gray-cards-wrapper">
+        <div class="col-xl-5 col-lg-6 col-md-12 col-sm-12 col-12 p-1">
+            <div class="card db-gray-card left-card h-100">
+                <div class="card-body">
+                    <div class="db-gray-card-heading mt-3 mb-3">
+                        Residential Teriff
+                    </div>
+                    <div class="row mt-4 gx-0">
+                        <div class="col-6">
+                            <div class="db-gray-card-sub_heading ms-1 mt-2 mb-1">No. of Units</div>
+                        </div>
+                        <div class="col-6">
+                            <div class="db-gray-card-sub_headin mt-2 mb-1">Price per Unit</div>
+                        </div>
+                        <ng-container *ngFor="let item of model?.residential_teriff">
+                            <div class="col-6 p-1  pt-2 d-flex justify-content-start align-items-center">
+                                <div class="colored-circle me-3" [ngStyle]="{'background-color':item?.color}"></div>
+                                <div class="db-gray-card-text">{{item?.range ? item?.range : "-"}}</div>
+                            </div>
+                            <div class="col-6 p-1 pt-2 d-flex justify-content-start align-items-center">
+                                <div class="db-gray-card-text fw-600">{{item.price ? item.price : "-"}}</div>
+                            </div>
+                        </ng-container>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-7 col-lg-6 col-md-12 col-sm-12 col-12 p-1">
+            <div class="card db-gray-card right-card h-100">
+                <div class="card-body p-0">
+                    <div class="row gx-0">
+                        <div class="col-12 month-filter-wrapper">
+                            <div class="db-gray-card-heading mb-3">
+                                {{monthTitle ? monthTitle : ""}}&nbsp;{{year}}
+                            </div>
+                            <p-dropdown [options]="monthDDL" styleClass="p-2 pt-1 pb-1 dd-override"
+                                [(ngModel)]="selectedMonth" optionLabel="name" (ngModelChange)="onChangeMonth()"
+                                placeholder="This Month" />
+                        </div>
+                    </div>
+                    <div class="row mt-3 gx-0">
+                        <div class="col-12">
+                            <div class="p-relative">
+                                <div class="chart-inner-wrapper center">
+                                    <label>Unit Consumed</label>
+                                    <div class="consumed">
+                                        {{model?.units_consumed ? model?.units_consumed : "-"}}
+                                    </div>
+                                    <hr>
+                                    <label>Remaining Units</label>
+                                    <div class="remaining">{{model?.remaining_units ? model?.remaining_units : "-"}}</div>
+                                </div>
+                                <apx-chart [series]="chartOptions?.series" [chart]="chartOptions?.chart"   [plotOptions]="chartOptions?.plotOptions"
+                                [labels]="chartOptions?.labels" [responsive]="chartOptions?.responsive" [colors]="chartOptions?.colors"
+                                [dataLabels]="chartOptions?.dataLabels" [title]="chartOptions?.title"  [legend]="chartOptions?.legend">
+                            </apx-chart> 
+                            </div>
+                           
+                        </div>
+                        <div class="col-12 d-flex justify-content-center align-items-center p-2">
+                            <button type="button" class="btn btn-primary goal-btn mt-3">Set Goal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div> 

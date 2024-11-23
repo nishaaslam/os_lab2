@@ -1,0 +1,37 @@
+.form-title-wrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 0.6rem;
+    .form-title{
+        font-size:18px;
+        font-weight:600;
+        color:black;
+    }
+
+    .submit-btn{
+        text-decoration: underline;
+        font-size: 16px;
+        text-underline-offset: 2px;
+        color:#589BB6;
+        font-weight: 400;
+        background-color: white;
+        border:0;
+    }
+
+    .plus-btn{
+        height: 30px;
+        border-radius: 50%;
+        background: #589BB6;
+        color: white;
+        width: 31px;
+    }
+}
+
+
+@media screen and (max-width:480px){
+    .form-title-wrapper{
+        display: block;
+        text-align: center;
+    }
+}

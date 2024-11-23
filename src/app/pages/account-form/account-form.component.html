@@ -1,0 +1,274 @@
+
+<div class="container-fluid p-0">
+    <form role="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="row gx-0 mt-2">
+            <div class="col-12 form-title-wrapper">
+                <div class="form-title">
+                    Personal Details:
+                </div>
+                <button type="submit" class="btn submit-btn">Update</button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">Full Name:<span class="text-danger fw-bold">*</span></label>
+                    <input type="text" class="form-control" placeholder="Enter name" formControlName="full_name" />
+                    <div *ngIf="form.controls['full_name'].touched && !form.controls['full_name'].valid">
+                        <div *ngFor="let validation of validationMessages?.name" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2"
+                                *ngIf="form.controls['full_name'].hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">Email:<span class="text-danger fw-bold">*</span></label>
+                    <input type="text" class="form-control" placeholder="user@domain.com" formControlName="email" />
+                    <div *ngIf="form.controls['email'].touched && !form.controls['email'].valid">
+                        <div *ngFor="let validation of validationMessages?.email" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2 ms-2"
+                                *ngIf="form.controls['email'].hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">Mobile:<span class="text-danger fw-bold">*</span></label>
+                    <input type="text" class="form-control" placeholder="Enter mobile number" formControlName="mobile" />
+                    <div *ngIf="form.controls['mobile'].touched && !form.controls['mobile'].valid">
+                        <div *ngFor="let validation of validationMessages?.mobile" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2 ms-2"
+                                *ngIf="form.controls['mobile'].hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">Cnic:<span class="text-danger fw-bold">*</span></label>
+                    <input type="text" class="form-control" placeholder="3xxxxx-xxxxxxx-x" formControlName="cnic" />
+                    <div *ngIf="form.controls['cnic'].touched && !form.controls['cnic'].valid">
+                        <div *ngFor="let validation of validationMessages?.cnic" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2 ms-2"
+                                *ngIf="form.controls['cnic'].hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">Address:</label>
+                    <input type="text" class="form-control" placeholder="Enter addrress" formControlName="address" />
+                    <div *ngIf="form.controls['address'].touched && !form.controls['address'].valid">
+                        <div *ngFor="let validation of validationMessages?.address" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2 ms-2"
+                                *ngIf="form.controls['address'].hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">City:<span class="text-danger fw-bold">*</span></label>
+                    <input type="text" class="form-control" placeholder="Enter city" formControlName="city" />
+                    <div *ngIf="form.controls['city'].touched && !form.controls['city'].valid">
+                        <div *ngFor="let validation of validationMessages?.cnic" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2 ms-2"
+                                *ngIf="form.controls['city'].hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form role="form" [formGroup]="loginForm" (ngSubmit)="onLoginDetailSubmit()">
+        <div class="row gx-0 mt-3">
+            <div class="col-12 form-title-wrapper">
+                <div class="form-title">
+                    Login Details:
+                </div>
+                <button type="submit" class="btn submit-btn">Update</button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">Username:</label>
+                    <input type="text" class="form-control" placeholder="Enter username" formControlName="username" />
+                    <div *ngIf="loginForm.controls['username']?.touched && loginForm.controls['username']?.invalid">
+                        <div *ngFor="let validation of validationMessages.name" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2 ms-2"
+                                *ngIf="loginForm.controls['username']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">Password:</label>
+                    <input type="password" class="form-control" placeholder="********" formControlName="password" />
+                    <div *ngIf="loginForm.controls['password']?.touched && loginForm.controls['password']?.invalid">
+                        <div *ngFor="let validation of validationMessages?.password" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2 ms-2"
+                                *ngIf="loginForm.controls['password']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">New Password:</label>
+                    <input type="password" class="form-control" placeholder="********" formControlName="new_password" />
+                    <div *ngIf="loginForm.controls['new_password']?.touched && loginForm.controls['new_password']?.invalid">
+                        <div *ngFor="let validation of validationMessages?.password" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2 ms-2"
+                                *ngIf="loginForm.controls['new_password']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                <div class="form-group mb-0">
+                    <label class="form-label">Confirm New Password:</label>
+                    <input type="password" class="form-control" placeholder="********" formControlName="confirm_new_password" />
+                    <div *ngIf="loginForm.controls['confirm_new_password']?.touched && loginForm.controls['confirm_new_password']?.invalid">
+                        <div *ngFor="let validation of validationMessages?.confirmPassword" class="text-danger ">
+                            <span class="form-control-feedback font-small mt-2 ms-2"
+                                *ngIf="loginForm.controls['confirm_new_password']?.hasError(validation.type)">
+                                {{ validation.message }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </form>
+    <form role="form" [formGroup]="meterForm" (ngSubmit)="onMeterSubmit()">
+        <ng-container formArrayName="meter_detail">
+            <div class="col-12 mt-3 form-title-wrapper">
+                <div class="form-title">
+                    Meter Details:
+                    <button type="button" class="btn plus-btn ms-1 p-relative" (click)="addMeterDetails()"><i class="fa fa-plus center"></i></button>
+                </div>
+                <button type="submit" class="btn submit-btn">Add</button>
+            </div>
+            <div class="row gx-0" *ngFor="let detail of meter_detail?.controls;let i=index;"  [formGroupName]="i">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                    <div class="form-group mb-0">
+                        <label class="form-label">Meter Number:<span class="text-danger fw-bold">*</span></label>
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="meter_number" />
+                        <div *ngIf="detail.get('meter_number')?.touched && detail.get('meter_number')?.invalid">
+                            <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
+                                <span class="form-control-feedback font-small mt-2 ms-2"
+                                    *ngIf="detail.get('meter_number')?.hasError(validation.type)">
+                                    {{ validation.message }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                    <div class="form-group mb-0">
+                        <label class="form-label">Reference Number:<span class="text-danger fw-bold">*</span></label>
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="reference_number" />
+                        <div *ngIf="detail.get('reference_number')?.touched && detail.get('reference_number')?.invalid">
+                            <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
+                                <span class="form-control-feedback font-small mt-2 ms-2"
+                                    *ngIf="detail.get('reference_number')?.hasError(validation.type)">
+                                    {{ validation.message }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                    <div class="form-group mb-0">
+                        <label class="form-label">Old Reference Number:<span class="text-danger fw-bold">*</span></label>
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="old_reference_number" />
+                        <div *ngIf="detail.get('old_reference_number')?.touched && detail.get('old_reference_number')?.invalid">
+                            <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
+                                <span class="form-control-feedback font-small mt-2 ms-2"
+                                    *ngIf="detail.get('old_reference_number')?.hasError(validation.type)">
+                                    {{ validation.message }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                    <div class="form-group mb-0">
+                        <label class="form-label">Connection Date:<span class="text-danger fw-bold">*</span></label>
+                        <input type="date" class="form-control" placeholder="Enter meter number" formControlName="connection_date" />
+                        <div *ngIf="detail.get('connection_date')?.touched && detail.get('connection_date')?.invalid">
+                            <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
+                                <span class="form-control-feedback font-small mt-2 ms-2"
+                                    *ngIf="detail.get('connection_date')?.hasError(validation.type)">
+                                    {{ validation.message }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                    <div class="form-group mb-0">
+                        <label class="form-label">Meter Load:<span class="text-danger fw-bold">*</span></label>
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="meter_load" />
+                        <div *ngIf="detail.get('meter_load')?.touched && detail.get('meter_load')?.invalid">
+                            <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
+                                <span class="form-control-feedback font-small mt-2 ms-2"
+                                    *ngIf="detail.get('meter_load')?.hasError(validation.type)">
+                                    {{ validation.message }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                    <div class="form-group mb-0">
+                        <label class="form-label">Status:<span class="text-danger fw-bold">*</span></label>
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="status" />
+                        <div *ngIf="detail.get('status')?.touched && detail.get('status')?.invalid">
+                            <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
+                                <span class="form-control-feedback font-small mt-2 ms-2"
+                                    *ngIf="detail.get('status')?.hasError(validation.type)">
+                                    {{ validation.message }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
+                    <div class="form-group mb-0">
+                        <label class="form-label">Meter Type:<span class="text-danger fw-bold">*</span></label>
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="meter_type" />
+                        <div *ngIf="detail.get('meter_type')?.touched && detail.get('meter_type')?.invalid">
+                            <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
+                                <span class="form-control-feedback font-small mt-2 ms-2"
+                                    *ngIf="detail.get('meter_type')?.hasError(validation.type)">
+                                    {{ validation.message }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </ng-container>
+    </form>
+</div>

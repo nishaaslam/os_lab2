@@ -1,0 +1,31 @@
+<div class="container-fluid sidebar-container"  [ngClass]="showSidebar ? 'sidebar-open' : 'sidebar-close'">
+    <button type="button" class="cross-btn" (click)="ToggleSideBarOnMobile()"><i class="fa fa-close"></i></button>
+    <!-----Profile-------->
+    <div class="sidebar-profile-wrapper">
+        <div class="profile-icon-box icon-box">
+            <img src="./assets/images/default-profile.png">
+        </div>
+        <div class="user-info mt-2">
+            <div class="mt-1 mb-1">{{userModel?.username ? userModel?.username : "-"}}</div>
+            <div class="mb-2 fw-400">{{userModel?.address ? userModel?.address : "-"}}</div>
+        </div>
+         <hr class="mt-4">
+    </div>
+   
+    <!-------Nav----------->
+    <nav class="side-nav">
+        <div *ngFor="let item of sideNav;let i=index;">
+            <a  routerLink={{item.link}} class="mb-2 ms-1 sidebar-text" routerLinkActive="active-item">
+                <img class="me-2" width="19" src="./assets/images/sidebar-images/{{item.image}}.png"><span class="mt-1">{{item.linkName}}</span>
+            </a>
+            <hr class="hz-line mt-3 mb-3" *ngIf="!(sideNav.length==(i+1))">
+        </div>
+    </nav>
+
+    <!------Logout------------->
+    <div class="logout-wrapper">
+        <hr class="hz-line">
+        <div class="sidebar-text mt-4 ms-1" (click)="logout()"><img class="me-2" width="19" src="./assets/images/sidebar-images/logout.png"><span class="mt-1">Logout</span></div>
+    </div>
+    
+</div>

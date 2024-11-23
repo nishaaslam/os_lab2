@@ -1,0 +1,56 @@
+.layout-container {
+    min-height: 100vh;
+
+    .main-container {
+        position: relative;
+        height: calc(100vh - 110px);
+        margin-left: 0px;
+        padding: 5px 60px 10px;
+        position: absolute;
+        top: 110px;
+        width: 100%;
+        transition: 0.3s all;
+        overflow: auto;
+
+        &--expand {
+            margin-left: 250px;
+            width: calc(100vw - 250px);
+        }
+
+        .main-inner {
+            width: calc(100vw - 120px);
+            //width:100%;
+            height: calc(100vh - 220px);
+            overflow-y: auto;
+           overflow-x: hidden;
+           //overflow: auto;
+            transition: 0.3s all;
+
+            &--shrink {
+               width: calc(100vw - 370px);
+            }
+
+        }
+    }
+}
+
+//responsiveness
+@media screen and (max-width:1300px) {
+    .layout-container {
+        .main-container {
+            padding: 5px 20px 10px;
+
+            &--expand {
+                margin-left: 0px;
+                width:100%;
+            }
+
+            .main-inner{
+                width:100%;
+            &--shrink{
+                width:100% !important;
+            }
+        }
+        }
+    }
+}

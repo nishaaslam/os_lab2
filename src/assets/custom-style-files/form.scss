@@ -1,0 +1,17 @@
+.form-control{
+    border:1px solid #CED7DB !important;
+    border-radius: 12px;
+    padding:0.7rem !important;
+}
+
+.form-label{
+    font-size:15px;
+    font-weight:400;
+    color:#2D2D2D;
+    margin-left:0.3rem;
+    margin-bottom:0.2rem;
+}
+
+input::placeholder {
+    opacity: 0.7 !important; 
+}
