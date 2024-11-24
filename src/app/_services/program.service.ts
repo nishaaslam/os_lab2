@@ -37,4 +37,23 @@ export class ProgramService {
    addMeter(model: any) : Observable<any>{
     return this.http.post<any>(APIPaths.addMeter, model)
    }
+
+    //getAllUsers()
+    getAllUsers():Observable<any>{
+      return this.http.get<any>(APIPaths.getAllusers)
+    }
+    //for creating credentials
+    createCredentials(model:any):Observable<any>{
+      return this.http.post<any>(APIPaths.createCredentials, model)
+    }
+
+    //for record reading
+    recordReading(model:any):Observable<any> {
+      return this.http.post<any>(APIPaths.recordReading, model)
+    }
+
+     //for record reading
+     addMeterType(model:any):Observable<any> {
+      return this.http.post<any>(APIPaths.addMeterType, model)
+    }
 }

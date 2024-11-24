@@ -7,7 +7,7 @@ import { ApexNonAxisChartSeries, ApexChart, ApexResponsive, ApexDataLabels, Apex
 import { ProgramService } from '../../_services/program.service';
 import { finalize } from 'rxjs';
 
-import { showErrorAlert } from '../../common/alerts';
+import { showErrorAlert, showSuccessAlert } from '../../common/alerts';
 import { Months } from '../../common';
 import { Helpers } from '../../_helpers';
 
@@ -94,11 +94,26 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllusers() {
-    this.http.get('https://freeapi.gerasim.in/api/User/GetAllUsers').subscribe((res:any) => {
-      this.users = res.data;
-    } , error => {
-      //alert("Error From API")
-    })
+    this.programService
+      .getAllUsers()
+      .pipe(finalize(() => {
+      }))
+      .subscribe({
+        next: (result: any) => {
+          if (result) {
+            debugger
+            this.users = result;
+            showSuccessAlert("Users Reterived Successfully!")
+          }else{
+            showErrorAlert(result.Message)
+          }
+        },
+        error: (error) => {
+          //showErrorAlert(error.error.message);
+        },
+        complete: () => {
+        }
+      }); 
   }
 
 
