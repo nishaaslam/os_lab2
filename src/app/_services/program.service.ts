@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { BaseService } from './api-service';
 import { HttpClient } from '@angular/common/http';
 import { APIPaths } from '../common/constant';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProgramService extends BaseService {
 
-  constructor(http: HttpClient) {
+  constructor(private http: HttpClient) {
     super(http)
   }
 
@@ -24,8 +25,8 @@ export class ProgramService extends BaseService {
   }
 
   //change password
-  changePassword(model: any){
-    return this.service(this.post(APIPaths.changePassword, model))
+  changePassword(model: any) : Observable<any>{
+    return this.http.post<any>(APIPaths.changePassword, model)
    }
 
    //Meter Detail

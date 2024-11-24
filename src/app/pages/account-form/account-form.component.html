@@ -105,11 +105,11 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                 <div class="form-group mb-0">
                     <label class="form-label">Username:</label>
-                    <input type="text" class="form-control" placeholder="Enter username" formControlName="username" />
-                    <div *ngIf="loginForm.controls['username']?.touched && loginForm.controls['username']?.invalid">
+                    <input type="text" class="form-control" placeholder="Enter username" formControlName="UserName" />
+                    <div *ngIf="loginForm.controls['UserName']?.touched && loginForm.controls['UserName']?.invalid">
                         <div *ngFor="let validation of validationMessages.name" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2 ms-2"
-                                *ngIf="loginForm.controls['username']?.hasError(validation.type)">
+                                *ngIf="loginForm.controls['UserName']?.hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>
@@ -119,11 +119,11 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                 <div class="form-group mb-0">
                     <label class="form-label">Password:</label>
-                    <input type="password" class="form-control" placeholder="********" formControlName="password" />
-                    <div *ngIf="loginForm.controls['password']?.touched && loginForm.controls['password']?.invalid">
+                    <input type="password" class="form-control" placeholder="********" formControlName="Password" />
+                    <div *ngIf="loginForm.controls['Password']?.touched && loginForm.controls['password']?.invalid">
                         <div *ngFor="let validation of validationMessages?.password" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2 ms-2"
-                                *ngIf="loginForm.controls['password']?.hasError(validation.type)">
+                                *ngIf="loginForm.controls['Password']?.hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>
@@ -133,11 +133,11 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                 <div class="form-group mb-0">
                     <label class="form-label">New Password:</label>
-                    <input type="password" class="form-control" placeholder="********" formControlName="new_password" />
-                    <div *ngIf="loginForm.controls['new_password']?.touched && loginForm.controls['new_password']?.invalid">
+                    <input type="password" class="form-control" placeholder="********" formControlName="NewPassword" />
+                    <div *ngIf="loginForm.controls['NewPassword']?.touched && loginForm.controls['NewPassword']?.invalid">
                         <div *ngFor="let validation of validationMessages?.password" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2 ms-2"
-                                *ngIf="loginForm.controls['new_password']?.hasError(validation.type)">
+                                *ngIf="loginForm.controls['NewPassword']?.hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>
@@ -148,10 +148,10 @@
                 <div class="form-group mb-0">
                     <label class="form-label">Confirm New Password:</label>
                     <input type="password" class="form-control" placeholder="********" formControlName="confirm_new_password" />
-                    <div *ngIf="loginForm.controls['confirm_new_password']?.touched && loginForm.controls['confirm_new_password']?.invalid">
-                        <div *ngFor="let validation of validationMessages?.confirmPassword" class="text-danger ">
+                    <div *ngIf="loginForm.controls['confirm_new_password'].touched && loginForm.controls['confirm_new_password'].invalid">
+                        <div *ngFor="let validation of validationMessages.confirmPassword" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2 ms-2"
-                                *ngIf="loginForm.controls['confirm_new_password']?.hasError(validation.type)">
+                                *ngIf="loginForm.controls['confirm_new_password'].hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>

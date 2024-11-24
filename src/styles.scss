@@ -7,7 +7,8 @@
 
 
 body {
-    overflow-y: auto;  // Allow scrolling on the body element
+    overflow-y: auto;
+    overflow-x: hidden;  // Allow scrolling on the body element
   }
 
 ul {
@@ -50,7 +51,7 @@ ul {
 //Class for Alerts
 
 .custom-alert-btn{
-        background-color: #0ef !important;
+        background-color: #589BB6 !important;
 
 }
 

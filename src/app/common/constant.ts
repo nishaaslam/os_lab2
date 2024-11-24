@@ -12,7 +12,7 @@ export const APIPaths = {
     //Program Service Contants
     dashboard: baseUrl + 'RecordReading',
     history: baseUrl + '',
-    changePassword:baseUrl + 'ChangePassword',
+    changePassword: baseUrl + 'ChangePassword',
     addMeter:baseUrl + '/AddMeter'
    
    

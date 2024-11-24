@@ -15,8 +15,20 @@ export class TokenHelper {
         localStorage.setItem(APIPaths.accessTokenKey, token);
     }
 
+    public static setUserDetail(model: any): void {
+        localStorage.setItem('User', model);
+    }
+
+    public static getUserDetail():any {
+        return localStorage.getItem('User');
+    }
+
     public static removeAccessToken(): void {
         return localStorage.removeItem(APIPaths.accessTokenKey);
+    }
+
+    public static clearLocalStorage():void{
+      localStorage.clear();
     }
 
     public static getBearerToken() {

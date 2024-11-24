@@ -15,13 +15,14 @@ export function NoWhitespaceValidator(): ValidatorFn {
 
 export function MatchPassword(password: string, confirmPassword: string) {
     return (group: FormGroup) => {
+        debugger
         let passwordInput = group.controls[password],
             passwordConfirmationInput = group.controls[confirmPassword];
         if (passwordInput.value && passwordInput.value !== passwordConfirmationInput.value) {
             return passwordConfirmationInput.setErrors({ notEquivalent: true })
         }
         else {
-            return passwordConfirmationInput.setErrors(null);
+            return null;
         }
     }
 }

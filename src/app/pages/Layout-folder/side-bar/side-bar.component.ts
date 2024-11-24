@@ -40,7 +40,7 @@ export class SideBarComponent implements OnInit {
 
 
   logout() {
-    TokenHelper.removeAccessToken()
+    TokenHelper.clearLocalStorage();
     this.router.navigateByUrl('/login')
   }
 

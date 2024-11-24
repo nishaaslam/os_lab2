@@ -43,13 +43,11 @@ export class LoginComponent implements OnInit {
         }))
         .subscribe({
           next: (result: any) => {
-            debugger
             if (result?.Code == 0) {
-              let accessToken = JSON.stringify(this.loginForm.value);
-              TokenHelper.setToken(accessToken);
+              let user_detail = JSON.stringify(this.loginForm.value);
+              TokenHelper.setUserDetail(user_detail);
               this.router.navigate(['/dashboard'])
             } else {
-              debugger
               showErrorAlert(result.Message);
             }
           },
