@@ -1,6 +1,6 @@
 .layout-container {
     min-height: 100vh;
-
+    overflow: auto;
     .main-container {
         position: relative;
         height: calc(100vh - 110px);
@@ -10,7 +10,7 @@
         top: 110px;
         width: 100%;
         transition: 0.3s all;
-        overflow: auto;
+        
 
         &--expand {
             margin-left: 250px;
@@ -21,8 +21,8 @@
             width: calc(100vw - 120px);
             //width:100%;
             height: calc(100vh - 220px);
-            overflow-y: auto;
-           overflow-x: hidden;
+            //overflow-y: auto;
+           //overflow-x: hidden;
            //overflow: auto;
             transition: 0.3s all;
 

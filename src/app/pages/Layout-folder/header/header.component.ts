@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { SidebarToggleService } from '../../../_services';
 import { CommonModule } from '@angular/common';
 
@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
+  isScrolled = false;
   isSidebarOpen=false;
   constructor(private toggleService: SidebarToggleService){}
 
@@ -22,6 +23,12 @@ export class HeaderComponent implements OnInit {
   onToggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
     this.toggleService.toggleSidebar(this.isSidebarOpen);
+  }
+
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.isScrolled = window.scrollY > 0;
   }
 
 }

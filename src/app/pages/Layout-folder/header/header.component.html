@@ -1,4 +1,4 @@
-<div class="header-wrapper" [ngClass]="{'calculated-width':isSidebarOpen==true}">
+<div class="header-wrapper" [class.scrolled]="isScrolled" [ngClass]="{'calculated-width':isSidebarOpen==true}">
     <div class="row gx-0 w-100">
         <div class="col-lg-1 col-md-1 col-sm-2 col-2 d-flex justify-content-start align-items-center">
             <i class="fa fa-bars" (click)="onToggleSidebar()"></i>

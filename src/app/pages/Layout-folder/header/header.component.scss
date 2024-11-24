@@ -1,10 +1,19 @@
 .header-wrapper {
+    position: sticky;
+    top:0;
     width: 100vw;
     height: 110px;
     padding: 20px 60px;
     margin-left: 0;
     float: inline-end;
     transition: 0.3s all;
+    background-color: white;
+    z-index: 1000;
+    transition: box-shadow 0.3s ease;
+
+    &.scrolled {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
 
     i {
         font-size: 20px;
