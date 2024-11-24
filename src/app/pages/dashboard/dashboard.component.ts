@@ -6,7 +6,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ApexNonAxisChartSeries, ApexChart, ApexResponsive, ApexDataLabels, ApexTitleSubtitle, NgApexchartsModule,  ApexPlotOptions, ApexAnnotations, ApexLegend } from 'ng-apexcharts';
 import { ProgramService } from '../../_services/program.service';
 import { finalize } from 'rxjs';
+
 import { showErrorAlert } from '../../common/alerts';
+import { Months } from '../../common';
+import { Helpers } from '../../_helpers';
 
 
 export type ChartOptions = {
@@ -51,23 +54,22 @@ export class DashboardComponent implements OnInit {
   currentDate = new Date();
   year = this.currentDate.getFullYear();
   monthTitle="August";
-  monthDDL=[
-    {name:"January"},
-    {name:"February"},{name:"March"},{name:"April"},{name:"May"},{name:"June"},{name:"July"},{name:"August"},{name:"September"},{name:"October"},{name:"November"},{name:"December"}
-  ]
+  monthEnum=Months;
+  monthDDL :any =[]
   selectedMonth:any;
   users:any[]=[];
   constructor(private http: HttpClient,private programService:ProgramService) {
 
   }
   ngOnInit(): void {
+    this.monthDDL = Helpers.enumStringToArray(this.monthEnum)
     this.getDashboard();
     this.getAllusers();
     this.chartOptions = {
       series: [25, 25, 85, 15],
       chart: {
         type: 'donut',  // Change to 'donut' for a doughnut chart
-        height: 450
+        height: 450,
       },
       labels: ["Team A"],
       dataLabels: {

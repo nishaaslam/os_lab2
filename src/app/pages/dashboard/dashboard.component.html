@@ -93,10 +93,13 @@
                                     <label>Remaining Units</label>
                                     <div class="remaining">{{model?.remaining_units ? model?.remaining_units : "-"}}</div>
                                 </div>
-                                <apx-chart [series]="chartOptions?.series" [chart]="chartOptions?.chart"   [plotOptions]="chartOptions?.plotOptions"
-                                [labels]="chartOptions?.labels" [responsive]="chartOptions?.responsive" [colors]="chartOptions?.colors"
-                                [dataLabels]="chartOptions?.dataLabels" [title]="chartOptions?.title"  [legend]="chartOptions?.legend">
-                            </apx-chart> 
+                                <div class="chart-container">
+                                    <apx-chart [series]="chartOptions?.series" [chart]="chartOptions?.chart"   [plotOptions]="chartOptions?.plotOptions"
+                                    [labels]="chartOptions?.labels" [responsive]="chartOptions?.responsive" [colors]="chartOptions?.colors"
+                                    [dataLabels]="chartOptions?.dataLabels" [title]="chartOptions?.title"  [legend]="chartOptions?.legend">
+                                </apx-chart> 
+                                </div>
+                               
                             </div>
                            
                         </div>

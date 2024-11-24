@@ -36,4 +36,10 @@ export class Helpers {
     return item;
   }
 
+
+  public static enumStringToArray(e:any): Object[] {
+    return Object.keys(e).filter(key => typeof e[key] === 'string')
+      .map(key => ({ id: key.replace(/_/g, ' '), name: e[key] }))
+  }
+
 }
