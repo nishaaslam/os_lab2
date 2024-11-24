@@ -5,6 +5,9 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { MainLayoutComponent } from './pages/Layout-folder/main-layout/main-layout.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { AccountFormComponent } from './pages/account-form/account-form.component';
+import { authGuard } from './_guards/auth.guard';
+import { NotFoundError } from 'rxjs';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
 
@@ -19,7 +22,7 @@ export const routes: Routes = [
     {
         path:'',
         component: MainLayoutComponent,
-        //canActivate:[authGuard],
+        canActivate:[authGuard],
         children:[
             {
                 path: '',
@@ -31,5 +34,6 @@ export const routes: Routes = [
             {path:'account',component:AccountFormComponent},
 
         ]
-    }
+    },
+    {path:"**",component:NotFoundComponent}
 ];
