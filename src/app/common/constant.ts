@@ -7,7 +7,7 @@ var baseUrl = environment.baseUrl;
 export const APIPaths = {
     
     //Auth Service Constant
-    login: baseUrl + 'login',
+    login: baseUrl + 'SignIn',
 
     //Program Service Contants
     dashboard: baseUrl + 'RecordReading',

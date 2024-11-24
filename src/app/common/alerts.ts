@@ -22,6 +22,9 @@ export function showSuccessAlert(message: string, title: string = 'Success!') {
         title: title,
         text: message,
         icon: 'success',
+        customClass: {
+            confirmButton: 'custom-alert-btn',
+        },
     });
 }
 
@@ -30,6 +33,9 @@ export function showErrorAlert(message: string, title?: string) {
         title: title != null ? title : MessageTypes.error,
         text: message,
         icon: 'error',
+        customClass: {
+            confirmButton: 'custom-alert-btn',
+        },
     });
 }
 
@@ -39,24 +45,6 @@ export function showErrorAlert(message: string, title?: string) {
 
 
 
- 
-
-
-
-   
-   
-
-  
-
-    
-
-   
-
-   
-
-   
-
-   
 
 
 
@@ -64,7 +52,25 @@ export function showErrorAlert(message: string, title?: string) {
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BaseService } from './api-service';
 import { HttpClient } from '@angular/common/http';
 import { APIPaths } from '../common/constant';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService extends BaseService {
+export class AuthService {
 
-  constructor(http :HttpClient){
-    super(http)
-    }
+  constructor(private http :HttpClient){
+  }
 
-    login(credentials:any) {
-      return this.service(this.post(APIPaths.login, credentials))
+    login(credentials:any):Observable<any> {
+      return this.http.post<any>(APIPaths.login,credentials);
     }
 }

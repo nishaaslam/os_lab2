@@ -3,20 +3,37 @@
     <div class="container">
         <div class="login-box">
             <h2>Login</h2>
-            <form action="#">
-                <div class="input-box">
-                    <input type="email" [(ngModel)]="loginObj.UserName" name="UserName" required>
+            <form [formGroup]="loginForm"  (ngSubmit)="onLogin()">
+                <div>
+                <div class="input-box mb-0">
+                    <input type="email"  name="UserName" formControlName="UserName">
                     <label>Email</label>
                 </div>
-                <div class="input-box">
-                    <input type="password" [(ngModel)]="loginObj.Password" name="Password" required>
+                <div *ngIf="loginForm.controls['UserName'].touched && !loginForm.controls['UserName'].valid">
+                    <div *ngFor="let validation of validationMessages.email" class="text-danger ">
+                        <p class="form-control-feedback font-small mb-0 mt-1 ms-2"
+                            *ngIf="loginForm.controls['UserName'].hasError(validation.type)">
+                            {{ validation.message }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="input-box mb-0">
+                    <input type="password" name="Password" formControlName="Password">
                     <label>Password</label>
                 </div>
-                
-                <button type="button" class="btn" (click)="onLogin()" >Login</button>
-                 
+                <div *ngIf="loginForm.controls['Password'].touched && !loginForm.controls['Password'].valid">
+                    <div *ngFor="let validation of validationMessages.password" class="text-danger ">
+                        <p class="form-control-feedback font-small mb-0 mt-1 ms-2"
+                            *ngIf="loginForm.controls['Password'].hasError(validation.type)">
+                            {{ validation.message }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+                <button type="submit" class="btn mt-3"   [disabled]="loginForm.invalid">Login</button>
             </form>
         </div>
-        
     </div>
 </div>

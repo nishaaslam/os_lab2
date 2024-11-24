@@ -24,9 +24,9 @@ export abstract class BaseService implements IBaseService {
 
 
     processPayload<T>(payload: IPayload<T>, messageTypeIds?: string[]) {
-        const message = payload.message;
+        const message = payload.message || undefined;
         messageTypeIds = messageTypeIds || [MessageTypes.error, MessageTypes.failure];
-        const messageTypeId = messageTypeIds.find(o => o === message.messageTypeId);
+        const messageTypeId = messageTypeIds.find(o => o === message?.messageTypeId);
        if (messageTypeId) {
            
             return (payload.message);

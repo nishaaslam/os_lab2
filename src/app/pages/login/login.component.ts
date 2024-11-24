@@ -1,60 +1,68 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { FormsModule,} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Messages, NoWhitespaceValidator, Patterns } from '../../common/_validation';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../_services';
+import { finalize } from 'rxjs';
+import { showErrorAlert } from '../../common/alerts';
+import { TokenHelper } from '../../_helpers';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  validationMessages = Messages.validation_messages;
+  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService) {
+  }
 
-  loginObj: Login;
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.loginObj = new Login();
+  ngOnInit(): void {
+    this.validateForm();
+  }
+
+  validateForm() {
+    this.loginForm = this.formBuilder.group({
+      UserName: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.emailRegex), Validators.maxLength(50)])],
+      Password: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.passwordRegex), Validators.maxLength(20), Validators.minLength(6)])],
+    },
+    );
   }
 
   onLogin() {
-    this.router.navigateByUrl('/dashboard')
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json'
-    // });
-
-    // const body = {
-    //   UserName: this.loginObj.UserName,
-    //   Password: this.loginObj.Password
-    // };
-
-    // this.http.post('http://localhost/WebAPIs/eMeterAPI.svc/SignIn', body, { headers })
-    //   .subscribe(
-    //     (response: any) => {
-    //       if (response.Code === 0) {
-    //         alert('Sign-in successful');
-    //         this.router.navigateByUrl('/dashboard')
-    //         this.router.navigate(['/home']);
-    //       } else {
-    //         alert(response.Message || 'Error occurred');
-    //       }
-    //     },
-    //     (error) => {
-    //       console.error('Error occurred:', error);
-    //       alert('An error occurred while signing in.');
-    //     }
-    //   );
+    if (this.loginForm.valid) {
+      let model = this.loginForm.value;
+      this.authService
+        .login(model)
+        .pipe(finalize(() => {
+        }))
+        .subscribe({
+          next: (result: any) => {
+            debugger
+            if (result?.Code == 0) {
+              let accessToken = JSON.stringify(this.loginForm.value);
+              TokenHelper.setToken(accessToken);
+              this.router.navigate(['/dashboard'])
+            } else {
+              debugger
+              showErrorAlert(result.Message);
+            }
+          },
+          error: (error) => {
+            showErrorAlert(error.error.message);
+          },
+          complete: () => {
+          }
+        });
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
   }
 }
 
-export class Login { 
-  UserName: string;
-  Password: string;
 
-  constructor() {
-    this.UserName = '';
-    this.Password = '';
-  } 
-}
