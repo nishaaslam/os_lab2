@@ -27,7 +27,12 @@ export class ProgramService extends BaseService {
   //change password
   changePassword(model: any) : Observable<any>{
     return this.http.post<any>(APIPaths.changePassword, model)
-   }
+  }
+
+  //registerCustomer
+  registerCustomer(model:any){
+    return this.http.post<any>(APIPaths.registerCustomer, model)
+  }
 
    //Meter Detail
    addMeter(model: any){

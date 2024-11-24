@@ -5,13 +5,13 @@ import { CommonModule } from '@angular/common';
 import { ProgramService } from '../../_services/program.service';
 import { finalize } from 'rxjs';
 import { showErrorAlert, showSuccessAlert } from '../../common/alerts';
-import { Token } from '@angular/compiler';
 import { TokenHelper } from '../../_helpers';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-account-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule,NgxMaskDirective],
   templateUrl: './account-form.component.html',
   styleUrl: './account-form.component.scss'
 })
@@ -35,13 +35,13 @@ export class AccountFormComponent implements OnInit {
 
   validateForm() {
     this.form = this.formBuilder.group({
-      id: [null],
-      full_name: [null, Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.nameRegex), Validators.maxLength(50)])],
-      email: [null, Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.emailRegex), Validators.maxLength(50)])],
-      mobile: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.Num), Validators.minLength(11), Validators.maxLength(11)])],
-      cnic: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.Num), Validators.minLength(13), Validators.maxLength(13)])],
-      address: [{ value: "", disabled: true }, Validators.required, NoWhitespaceValidator, Validators.maxLength(300)],
-      city: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.name), Validators.maxLength(50)])],
+      CustomerId: [null],
+      FullName: [null, Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.nameRegex), Validators.maxLength(50),Validators.minLength(3)])],
+      EmailAddress: [null, Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.emailRegex), Validators.maxLength(50)])],
+      MobileNo: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.Num), Validators.minLength(11), Validators.maxLength(11)])],
+      CnicNo: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.Num), Validators.minLength(13), Validators.maxLength(13)])],
+      FullAddress: ['', Validators.required, NoWhitespaceValidator, Validators.maxLength(300)],
+      CityName: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.nameRegex), Validators.maxLength(50),Validators.minLength(3)])],
     },
 
     );
@@ -70,7 +70,6 @@ export class AccountFormComponent implements OnInit {
   }
 
   addMeterDetails() {
-    debugger
     this.meter_detail.push(
       this.formBuilder.group({
         meter_number: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
@@ -86,7 +85,6 @@ export class AccountFormComponent implements OnInit {
 
   onLoginDetailSubmit() {
     if (this.loginForm.invalid) {
-      debugger
       this.loginForm.markAllAsTouched();
     } else {
       let model = this.loginForm.getRawValue();
@@ -96,6 +94,7 @@ export class AccountFormComponent implements OnInit {
       this.programService
         .changePassword(model)
         .pipe(finalize(() => {
+          
         }))
         .subscribe({
           next: (result: any) => {
@@ -107,15 +106,36 @@ export class AccountFormComponent implements OnInit {
           },
           error: (error) => {
             showErrorAlert(error.error.message);
-          },
-          complete: () => {
           }
         });
     }
   }
 
 
-  onSubmit() { }
+  onSubmit() { 
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+    } else {
+      let model = this.form.getRawValue();
+      this.programService
+        .registerCustomer(model)
+        .pipe(finalize(() => {
+          //this.form.reset();
+        }))
+        .subscribe({
+          next: (result: any) => {
+            if (result && result?.Code==0) {
+              showSuccessAlert(result.Message)
+            }else{
+              showErrorAlert(result.Message) 
+            }
+          },
+          error: (error) => {
+            showErrorAlert(error.error.message);
+          }
+        });
+    }
+  }
 
 
   onMeterSubmit() {

@@ -11,11 +11,11 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                 <div class="form-group mb-0">
                     <label class="form-label">Full Name:<span class="text-danger fw-bold">*</span></label>
-                    <input type="text" class="form-control" placeholder="Enter name" formControlName="full_name" />
-                    <div *ngIf="form.controls['full_name'].touched && !form.controls['full_name'].valid">
+                    <input type="text" class="form-control" placeholder="Enter name" formControlName="FullName" />
+                    <div *ngIf="form.controls['FullName'].touched && !form.controls['FullName'].valid">
                         <div *ngFor="let validation of validationMessages?.name" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2"
-                                *ngIf="form.controls['full_name'].hasError(validation.type)">
+                                *ngIf="form.controls['FullName'].hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>
@@ -25,11 +25,11 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                 <div class="form-group mb-0">
                     <label class="form-label">Email:<span class="text-danger fw-bold">*</span></label>
-                    <input type="text" class="form-control" placeholder="user@domain.com" formControlName="email" />
-                    <div *ngIf="form.controls['email'].touched && !form.controls['email'].valid">
+                    <input type="text" class="form-control" placeholder="user@domain.com" formControlName="EmailAddress" />
+                    <div *ngIf="form.controls['EmailAddress'].touched && !form.controls['EmailAddress'].valid">
                         <div *ngFor="let validation of validationMessages?.email" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2 ms-2"
-                                *ngIf="form.controls['email'].hasError(validation.type)">
+                                *ngIf="form.controls['EmailAddress'].hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>
@@ -39,11 +39,11 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                 <div class="form-group mb-0">
                     <label class="form-label">Mobile:<span class="text-danger fw-bold">*</span></label>
-                    <input type="text" class="form-control" placeholder="Enter mobile number" formControlName="mobile" />
-                    <div *ngIf="form.controls['mobile'].touched && !form.controls['mobile'].valid">
+                    <input type="text" mask="0000-0000000" class="form-control" placeholder="03xx-xxxxxxx" formControlName="MobileNo" />
+                    <div *ngIf="form.controls['MobileNo'].touched && !form.controls['MobileNo'].valid">
                         <div *ngFor="let validation of validationMessages?.mobile" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2 ms-2"
-                                *ngIf="form.controls['mobile'].hasError(validation.type)">
+                                *ngIf="form.controls['MobileNo'].hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>
@@ -53,11 +53,11 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                 <div class="form-group mb-0">
                     <label class="form-label">Cnic:<span class="text-danger fw-bold">*</span></label>
-                    <input type="text" class="form-control" placeholder="3xxxxx-xxxxxxx-x" formControlName="cnic" />
-                    <div *ngIf="form.controls['cnic'].touched && !form.controls['cnic'].valid">
+                    <input type="text" mask="00000-0000000-0"  class="form-control" placeholder="3xxxxx-xxxxxxx-x" formControlName="CnicNo" />
+                    <div *ngIf="form.controls['CnicNo'].touched && !form.controls['CnicNo'].valid">
                         <div *ngFor="let validation of validationMessages?.cnic" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2 ms-2"
-                                *ngIf="form.controls['cnic'].hasError(validation.type)">
+                                *ngIf="form.controls['CnicNo'].hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>
@@ -67,11 +67,11 @@
             <div class="col-12 p-2">
                 <div class="form-group mb-0">
                     <label class="form-label">Address:</label>
-                    <input type="text" class="form-control" placeholder="Enter addrress" formControlName="address" />
-                    <div *ngIf="form.controls['address'].touched && !form.controls['address'].valid">
+                    <input type="text" class="form-control" placeholder="Enter addrress" formControlName="FullAddress" />
+                    <div *ngIf="form.controls['FullAddress'].touched && !form.controls['FullAddress'].valid">
                         <div *ngFor="let validation of validationMessages?.address" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2 ms-2"
-                                *ngIf="form.controls['address'].hasError(validation.type)">
+                                *ngIf="form.controls['FullAddress'].hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>
@@ -81,11 +81,11 @@
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                 <div class="form-group mb-0">
                     <label class="form-label">City:<span class="text-danger fw-bold">*</span></label>
-                    <input type="text" class="form-control" placeholder="Enter city" formControlName="city" />
-                    <div *ngIf="form.controls['city'].touched && !form.controls['city'].valid">
-                        <div *ngFor="let validation of validationMessages?.cnic" class="text-danger ">
+                    <input type="text" class="form-control" placeholder="Enter city" formControlName="CityName" />
+                    <div *ngIf="form.controls['CityName'].touched && !form.controls['CityName'].valid">
+                        <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
                             <span class="form-control-feedback font-small mt-2 ms-2"
-                                *ngIf="form.controls['city'].hasError(validation.type)">
+                                *ngIf="form.controls['CityName'].hasError(validation.type)">
                                 {{ validation.message }}
                             </span>
                         </div>

@@ -10,13 +10,15 @@ export class Messages {
        'name': [
             { type: 'required', message: 'Name is required' },
             { type: 'pattern', message: 'Enter a valid name' },
-            { type: 'maxlength', message: 'Name must not be greater than 50 characters ' },
+            { type: 'maxlength', message: 'Name must not be greater than 50 characters' },
+            { type: 'minlength', message: 'Name must contain atleast 3  characters' },
             { type: 'whitespace', message: 'Only whitespace is not allowed ' }
         ],
         'value': [
             { type: 'required', message: 'Value is required' },
             { type: 'pattern', message: 'Enter a valid value' },
             { type: 'maxlength', message: 'Value must not be greater than 50 characters ' },
+            { type: 'minlength', message: 'Value must contain atleast 3  characters ' },
             { type: 'whitespace', message: 'Only whitespace is not allowed' },
         ],
       
@@ -33,11 +35,11 @@ export class Messages {
             { type: 'whitespace', message: 'Only whitespace is not allowed ' }
         ],
         'mobile': [
-            { type: 'required', message: 'Phone Number is required' },
-            { type: 'pattern', message: 'Enter a valid Phone number' },
+            { type: 'required', message: 'Mobile Number is required' },
+            { type: 'pattern', message: 'Enter a valid Mobile number' },
             { type: 'whitespace', message: 'Only whitespace is not allowed ' },
-            { type: 'minlength', message: 'Phone Number must be at least  number ' },
-            { type: 'maxlength', message: 'Phone  Number should not be more than 11 number' }
+            { type: 'minlength', message: 'Mobile Number must be at least 11 number ' },
+            { type: 'maxlength', message: 'Mobile  Number should not be more than 11 number' }
         ],
         'password': [
             { type: 'required', message: 'Password is required' },

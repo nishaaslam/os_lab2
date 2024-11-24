@@ -13,6 +13,7 @@ export const APIPaths = {
     dashboard: baseUrl + 'RecordReading',
     history: baseUrl + '',
     changePassword: baseUrl + 'ChangePassword',
+    registerCustomer: baseUrl + 'RegisterCustomer',
     addMeter:baseUrl + '/AddMeter'
    
    
