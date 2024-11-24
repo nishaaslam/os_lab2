@@ -1,5 +1,5 @@
 .header-wrapper {
-    position: sticky;
+    position: fixed;
     top:0;
     width: 100vw;
     height: 110px;
@@ -9,10 +9,10 @@
     transition: 0.3s all;
     background-color: white;
     z-index: 1000;
-    transition: box-shadow 0.3s ease;
+    //transition: box-shadow 0.3s ease;
 
     &.scrolled {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 4px rgba(128, 128, 128, 0.4), 0 4px 8px rgba(128, 128, 128, 0.3);
       }
 
     i {

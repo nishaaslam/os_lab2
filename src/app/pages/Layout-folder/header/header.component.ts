@@ -11,8 +11,8 @@ import { CommonModule } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   isScrolled = false;
-  isSidebarOpen=false;
-  constructor(private toggleService: SidebarToggleService){}
+  isSidebarOpen = false;
+  constructor(private toggleService: SidebarToggleService) { }
 
   ngOnInit(): void {
     this.toggleService.isSidebarVisible$.subscribe(visible => {
@@ -26,9 +26,18 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  @HostListener('window:scroll', [])
-  onScroll(): void {
-    this.isScrolled = window.scrollY > 0;
+  // Listen for the scroll event on the window
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const scrollPosition = document.documentElement.scrollTop || document.body.scrollTop || 0;
+    this.isScrolled = scrollPosition > 0;
   }
+
+
+
+
+
+
+
 
 }

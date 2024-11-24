@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, AfterContentInit, AfterViewInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SideBarComponent } from '../side-bar/side-bar.component';
 import { SidebarToggleService } from '../../../_services';
@@ -23,5 +23,14 @@ export class MainLayoutComponent  implements OnInit {
       this.isExpand = visible;
     });
   }
+
+
+  
+
+
+
+
+
+
 
 }

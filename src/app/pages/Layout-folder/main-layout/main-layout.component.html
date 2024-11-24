@@ -1,10 +1,12 @@
-<div class="container-fluid p-0 p-relative layout-container">
+<div #scrollContainer class="container-fluid p-0 p-relative layout-container">
     <app-header></app-header>
     <app-side-bar></app-side-bar>
-    <div class="main-container" [ngClass]="{'main-container--expand':isExpand==true}">
+    <div class="main-container"  [ngClass]="{'main-container--expand':isExpand==true}">
         <div class="main-inner" [ngClass]="{'main-inner--shrink':isExpand==true}">
             <router-outlet></router-outlet>
             <app-footer></app-footer>
         </div>
     </div>
 </div>
+
+
