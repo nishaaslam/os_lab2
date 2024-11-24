@@ -7,21 +7,20 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProgramService extends BaseService {
+export class ProgramService {
 
   constructor(private http: HttpClient) {
-    super(http)
   }
 
 
   //Dashboard
-  getDashboardDetail() {
-    return this.service(this.get(APIPaths.dashboard))
+  getDashboardDetail():Observable<any>  {
+    return this.http.get<any>(APIPaths.history)
   }
 
   //history
-  getHistory() {
-    return this.service(this.get(APIPaths.history))
+  getHistory():Observable<any> {
+    return this.http.get<any>(APIPaths.history)
   }
 
   //change password
@@ -30,12 +29,12 @@ export class ProgramService extends BaseService {
   }
 
   //registerCustomer
-  registerCustomer(model:any){
+  registerCustomer(model:any) :Observable<any>{
     return this.http.post<any>(APIPaths.registerCustomer, model)
   }
 
    //Meter Detail
-   addMeter(model: any){
-    return this.service(this.post(APIPaths.addMeter, model))
+   addMeter(model: any) : Observable<any>{
+    return this.http.post<any>(APIPaths.addMeter, model)
    }
 }

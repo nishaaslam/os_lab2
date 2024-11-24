@@ -5,13 +5,13 @@ import { CommonModule } from '@angular/common';
 import { ProgramService } from '../../_services/program.service';
 import { finalize } from 'rxjs';
 import { showErrorAlert, showSuccessAlert } from '../../common/alerts';
-import { TokenHelper } from '../../_helpers';
+import { Helpers, TokenHelper } from '../../_helpers';
 import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-account-form',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule,NgxMaskDirective],
+  imports: [ReactiveFormsModule, CommonModule, NgxMaskDirective],
   templateUrl: './account-form.component.html',
   styleUrl: './account-form.component.scss'
 })
@@ -36,12 +36,12 @@ export class AccountFormComponent implements OnInit {
   validateForm() {
     this.form = this.formBuilder.group({
       CustomerId: [null],
-      FullName: [null, Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.nameRegex), Validators.maxLength(50),Validators.minLength(3)])],
+      FullName: [null, Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.nameRegex), Validators.maxLength(50), Validators.minLength(3)])],
       EmailAddress: [null, Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.emailRegex), Validators.maxLength(50)])],
       MobileNo: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.Num), Validators.minLength(11), Validators.maxLength(11)])],
       CnicNo: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.Num), Validators.minLength(13), Validators.maxLength(13)])],
       FullAddress: ['', Validators.required, NoWhitespaceValidator, Validators.maxLength(300)],
-      CityName: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.nameRegex), Validators.maxLength(50),Validators.minLength(3)])],
+      CityName: ['', Validators.compose([Validators.required, NoWhitespaceValidator, Validators.pattern(Patterns.nameRegex), Validators.maxLength(50), Validators.minLength(3)])],
     },
 
     );
@@ -70,17 +70,21 @@ export class AccountFormComponent implements OnInit {
   }
 
   addMeterDetails() {
+    if(this.meter_detail.length==0){
     this.meter_detail.push(
       this.formBuilder.group({
-        meter_number: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
-        reference_number: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
-        old_reference_number: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
-        connection_date: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
-        meter_load: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
-        status: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
+        MeterID:[null],
+        CustomerID:[1],
+        MeterNo: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
+        RefNo: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
+        OldRefNo: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
+        ConnectionDate: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
+        MeterLoad: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
+        StatusID: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
         meter_type: ['', Validators.compose([Validators.required, NoWhitespaceValidator])],
       })
     )
+  }
   }
 
   onLoginDetailSubmit() {
@@ -94,14 +98,14 @@ export class AccountFormComponent implements OnInit {
       this.programService
         .changePassword(model)
         .pipe(finalize(() => {
-          
+
         }))
         .subscribe({
           next: (result: any) => {
-            if (result && result?.Code==0) {
+            if (result && result?.Code == 0) {
               showSuccessAlert("Password Changed Successfully.")
-            }else{
-              showErrorAlert(result.Message) 
+            } else {
+              showErrorAlert(result.Message)
             }
           },
           error: (error) => {
@@ -112,11 +116,13 @@ export class AccountFormComponent implements OnInit {
   }
 
 
-  onSubmit() { 
+  onSubmit() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
     } else {
       let model = this.form.getRawValue();
+      let obj= Helpers.getCommonParams()
+      model = {...model, ...obj}
       this.programService
         .registerCustomer(model)
         .pipe(finalize(() => {
@@ -124,10 +130,10 @@ export class AccountFormComponent implements OnInit {
         }))
         .subscribe({
           next: (result: any) => {
-            if (result && result?.Code==0) {
+            if (result && result?.Code == 0) {
               showSuccessAlert(result.Message)
-            }else{
-              showErrorAlert(result.Message) 
+            } else {
+              showErrorAlert(result.Message)
             }
           },
           error: (error) => {
@@ -139,22 +145,35 @@ export class AccountFormComponent implements OnInit {
 
 
   onMeterSubmit() {
-    let model = this.meterForm.value;
-    this.programService
-      .addMeter(model)
-      .pipe(finalize(() => {
-      }))
-      .subscribe({
-        next: (result: any) => {
-          if (result) {
-            showSuccessAlert("Meter Details Added Successfully.")
+    if(this.meterForm.valid){
+      let model = this.meterForm.value.meter_detail[0];
+      let obj= Helpers.getCommonParams()
+      model = {...model, ...obj};
+      //m//odel.ConnectionDate = Helpers.getDateFormat();
+      this.programService
+        .addMeter(model)
+        .pipe(finalize(() => {
+        }))
+        .subscribe({
+          next: (result: any) => {
+            if (result) {
+              debugger
+              if (result && result?.Code == 0) {
+                showSuccessAlert(result.Message)
+              } else {
+                showErrorAlert(result.Message)
+              }
+            }
+          },
+          error: (error) => {
+            showErrorAlert(error.error.message);
+          },
+          complete: () => {
           }
-        },
-        error: (error) => {
-          showErrorAlert(error.error.message);
-        },
-        complete: () => {
-        }
-      });
+        });
+    }else{
+      this.meterForm.markAllAsTouched();
+    }
+   
   }
 }

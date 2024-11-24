@@ -41,5 +41,24 @@ export class Helpers {
     return Object.keys(e).filter(key => typeof e[key] === 'string')
       .map(key => ({ id: key.replace(/_/g, ' '), name: e[key] }))
   }
+  
+  public static getDateFormat(date:any){
+    const currentDate = new Date();
+    const fd=`/Date(${currentDate.getTime()})/`;
+    return fd;
+  }
+
+
+
+  public static getCommonParams(){
+    const currentDate = new Date();
+    const fd=`/Date(${currentDate.getTime()})/`;
+    let model={
+      ActiveInd:true,
+      CreatedAt:fd,
+      CreatedBy: "user"
+    }
+    return model;
+  }
 
 }

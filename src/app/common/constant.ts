@@ -14,7 +14,7 @@ export const APIPaths = {
     history: baseUrl + '',
     changePassword: baseUrl + 'ChangePassword',
     registerCustomer: baseUrl + 'RegisterCustomer',
-    addMeter:baseUrl + '/AddMeter'
+    addMeter:baseUrl + 'RegisterMeterWithCustomer'
    
    
 

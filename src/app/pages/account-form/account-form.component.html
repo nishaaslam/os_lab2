@@ -170,14 +170,20 @@
                 <button type="submit" class="btn submit-btn">Add</button>
             </div>
             <div class="row gx-0" *ngFor="let detail of meter_detail?.controls;let i=index;"  [formGroupName]="i">
+                <div class="col-12 p-2 d-flex justify-content-between align-items-center">
+                    <div class="form-title">
+                        <b>Meter {{i+1}}:</b>
+                    </div>
+                    <i class="fa fa-trash" (click)="meter_detail.removeAt(i)"></i>
+                </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                     <div class="form-group mb-0">
                         <label class="form-label">Meter Number:<span class="text-danger fw-bold">*</span></label>
-                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="meter_number" />
-                        <div *ngIf="detail.get('meter_number')?.touched && detail.get('meter_number')?.invalid">
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="MeterNo" />
+                        <div *ngIf="detail.get('MeterNo')?.touched && detail.get('MeterNo')?.invalid">
                             <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
                                 <span class="form-control-feedback font-small mt-2 ms-2"
-                                    *ngIf="detail.get('meter_number')?.hasError(validation.type)">
+                                    *ngIf="detail.get('MeterNo')?.hasError(validation.type)">
                                     {{ validation.message }}
                                 </span>
                             </div>
@@ -187,11 +193,11 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                     <div class="form-group mb-0">
                         <label class="form-label">Reference Number:<span class="text-danger fw-bold">*</span></label>
-                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="reference_number" />
-                        <div *ngIf="detail.get('reference_number')?.touched && detail.get('reference_number')?.invalid">
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="RefNo" />
+                        <div *ngIf="detail.get('RefNo')?.touched && detail.get('RefNo')?.invalid">
                             <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
                                 <span class="form-control-feedback font-small mt-2 ms-2"
-                                    *ngIf="detail.get('reference_number')?.hasError(validation.type)">
+                                    *ngIf="detail.get('RefNo')?.hasError(validation.type)">
                                     {{ validation.message }}
                                 </span>
                             </div>
@@ -201,11 +207,11 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                     <div class="form-group mb-0">
                         <label class="form-label">Old Reference Number:<span class="text-danger fw-bold">*</span></label>
-                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="old_reference_number" />
-                        <div *ngIf="detail.get('old_reference_number')?.touched && detail.get('old_reference_number')?.invalid">
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="OldRefNo" />
+                        <div *ngIf="detail.get('OldRefNo')?.touched && detail.get('OldRefNo')?.invalid">
                             <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
                                 <span class="form-control-feedback font-small mt-2 ms-2"
-                                    *ngIf="detail.get('old_reference_number')?.hasError(validation.type)">
+                                    *ngIf="detail.get('OldRefNo')?.hasError(validation.type)">
                                     {{ validation.message }}
                                 </span>
                             </div>
@@ -215,11 +221,11 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                     <div class="form-group mb-0">
                         <label class="form-label">Connection Date:<span class="text-danger fw-bold">*</span></label>
-                        <input type="date" class="form-control" placeholder="Enter meter number" formControlName="connection_date" />
-                        <div *ngIf="detail.get('connection_date')?.touched && detail.get('connection_date')?.invalid">
+                        <input type="date" class="form-control" placeholder="Enter meter number" formControlName="ConnectionDate" />
+                        <div *ngIf="detail.get('ConnectionDate')?.touched && detail.get('ConnectionDate')?.invalid">
                             <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
                                 <span class="form-control-feedback font-small mt-2 ms-2"
-                                    *ngIf="detail.get('connection_date')?.hasError(validation.type)">
+                                    *ngIf="detail.get('ConnectionDate')?.hasError(validation.type)">
                                     {{ validation.message }}
                                 </span>
                             </div>
@@ -229,11 +235,11 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                     <div class="form-group mb-0">
                         <label class="form-label">Meter Load:<span class="text-danger fw-bold">*</span></label>
-                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="meter_load" />
-                        <div *ngIf="detail.get('meter_load')?.touched && detail.get('meter_load')?.invalid">
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="MeterLoad" />
+                        <div *ngIf="detail.get('MeterLoad')?.touched && detail.get('MeterLoad')?.invalid">
                             <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
                                 <span class="form-control-feedback font-small mt-2 ms-2"
-                                    *ngIf="detail.get('meter_load')?.hasError(validation.type)">
+                                    *ngIf="detail.get('MeterLoad')?.hasError(validation.type)">
                                     {{ validation.message }}
                                 </span>
                             </div>
@@ -243,11 +249,11 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12 p-2">
                     <div class="form-group mb-0">
                         <label class="form-label">Status:<span class="text-danger fw-bold">*</span></label>
-                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="status" />
-                        <div *ngIf="detail.get('status')?.touched && detail.get('status')?.invalid">
+                        <input type="text" class="form-control" placeholder="Enter meter number" formControlName="StatusID" />
+                        <div *ngIf="detail.get('StatusID')?.touched && detail.get('StatusID')?.invalid">
                             <div *ngFor="let validation of validationMessages?.value" class="text-danger ">
                                 <span class="form-control-feedback font-small mt-2 ms-2"
-                                    *ngIf="detail.get('status')?.hasError(validation.type)">
+                                    *ngIf="detail.get('StatusID')?.hasError(validation.type)">
                                     {{ validation.message }}
                                 </span>
                             </div>
